@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row-single">
+    <h2><%=@user.email %> Profile</h2>
+    <h2>Current Credits: <%=@user.credits %></h2>
+  </div>
+  <ul class="comic-list clearfix">
+    <% @user.comicsofUser.each do |comic| %>
+      <li>
+        <div class="comic-shadow">
+          <%= image_tag displayCoverImage(comic) %>
+          <%=link_to comic.title, comic_path(comic),{:class=>"comic-title-link"}%>
+          <p><%=newReviewLink(comic,@user)%></p>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>

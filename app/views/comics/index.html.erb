@@ -6,6 +6,20 @@
           include_blank:"Select publisher",
           selected:selectedPublisher(params[:search])) %>
     </div>
-    
+    <div class="col span-1-of-3">
+      <%=label_tag "Sort order:" %>
+      <%= select(:search,:sort_order,
+          options_for_select([['Newest',"DESC"],['Oldest',"ASC"],['Rating',"rating"]],
+          selected:selectedOrder(params[:search]))) %>
+      <%= submit_tag("Search")
+    </div>
   <% end %>
+</div>
+<div class="container">
+  <div class="row-single">
+    <h2>Comics:</h2>
+  </div>
+  <div class="row">
+    <%= render "comic-list", comics:@comics %>
+  </div>
 </div>

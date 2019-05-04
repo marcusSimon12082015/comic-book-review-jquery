@@ -4,6 +4,27 @@
       <h1><%=@comic.title%></h1>
       <p>Description:<br> <%=@comic.description %></p>
       <p>Price: <%=@comic.price%></p>
+      <p><%=comic.release_date.strftime("%B %d, %Y") %></p>
     </div>
+    <div class="col span-1-0f-3 comic-image">
+      <%= image_tag displayCoverImage(@comic) %>
+      <%= displayAddButton(current_user,@comic) %>
+    </div>
+  </div>
+
+  <div class="comic-additional-information">
+    <div class="row">
+      <h1>Artists</h1>
+    </div>
+    <ul class="artist-list clearfix">
+      <% comic.artists.each do |artist| %>
+        <li class="comic-artist-img">
+          <%=image_tag displayArtistImage(artist) %>
+          <%=artist.nameType%>
+        </li>
+      <% end %>
+    </ul>
+
+    
   </div>
 </section>

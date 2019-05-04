@@ -29,4 +29,19 @@ class Comic < ApplicationRecord
   validates_associated :artists
   ###########################################################################
 
+  def removeCurrentUser(user)
+    user.nil? ? users_comics : users_comics.where.not(id:user.id)
+  end
+
+  def artists_attributes=(attributes)
+    attributes.each do |index,artist|
+      if !find_artist(artist)
+        self.artists << Artist.find_or_create_by(name:artist["name"],
+                        surname:artist["surname"],
+                        type_id:artist["type_id"].to_i)
+      end
+    end
+  end
+
+  
 end

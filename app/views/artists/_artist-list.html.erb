@@ -1,0 +1,10 @@
+<ul class="comic-list clearfix">
+  <% artist.each do |artist| %>
+    <li>
+      <div class="comic-shadow">
+        <%= image_tag displayArtistImage(artist) %>
+        <p><%= link_to artist.nameSurname, artist_path(artist), :class => "comic-title-link" %></p>
+      </div>
+    </li>
+  <% end %>
+</ul>

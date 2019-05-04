@@ -1,0 +1,17 @@
+<ul class="comic-list clearfix">
+  <% comics.each do |comic| %>
+    <li>
+      <div class="comic-shadow">
+        <%= image_tag displayCoverImage(comic) %>
+        <p><%= comic.publisher.name %></p>
+        <p><%= link_to comic.title, comic_path(comic), :class => "comic-title-link" %></p>
+        <p><%= comic.price %></p>
+        <p><%= comic.rating %></p>
+        <p><%= comic.release_date.strftime("%B %d, %Y") %></p>
+        <% if comic.respond_to?(:user_count) %>
+          <p>Number of users that own this comic: <%=comic.user_count %></p>
+        <% end %>
+      </div>
+    </li>
+    <% end %>
+</ul>

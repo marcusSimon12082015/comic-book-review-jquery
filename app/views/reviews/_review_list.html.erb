@@ -1,0 +1,18 @@
+<ul class="comic-list clearfix">
+  <% reviews.each do |review| %>
+    <li>
+      <div class="comic-shadow">
+        <div style="float:left">
+          <%= image_tag displayCoverImage(review.comic) %>
+        </div>
+        <div style="float:left;">
+          <p><%=link_to review.title, review_path(review),
+            :class => "comic-title-link"%><br>
+            by <%=link_to review.user.firstEmailPart, user_path(review.user),
+            :class=>"comic-title-link"%>
+          </p>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>

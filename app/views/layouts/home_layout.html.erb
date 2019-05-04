@@ -1,0 +1,93 @@
+<head>
+  <title>RailsPortfoliProject</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,300,300i,400" rel="stylesheet">
+  <link rel="stylesheet" href="/css/animate.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="/stylesheets/grid.css">
+  <link href="https://unpkg.com/ionicons@4.5.5/dist/css/ionicons.min.css" rel="stylesheet">
+</head>
+
+<header>
+  <nav>
+    <h1 class="logo">Comic Review Corner</h1>
+    <ul class="main-nav">
+      <li><%=link_to "Comics", comics_path %></li>
+      <li><%=link_to "Artists", artists_path %></li>
+      <li><%=link_to "Reviews", reviews_path %></li>
+      <li><%= displayLoginOutLink %></li>
+      <%= displayNewComicLink(current_user) %>
+      <%= displayUser(current_user) %>
+    </ul>
+  </nav>
+  <%= render :partial => 'layouts/flash_messages', :flash => flash %>
+<div class="animated fadeIn home-sign-up-form">
+  <div class="animated slideInLeft delay-1s row-single">
+    <h2 class="home-h2">Sign up - Get 100 credits for free!</h2>
+  </div>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+   <div class="field">
+     <%= f.label :email %><br />
+     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+   </div>
+
+   <div class="field">
+     <%= f.label :password %>
+     <% if @minimum_password_length %>
+     <em>(<%= @minimum_password_length %> characters minimum)</em>
+     <% end %><br />
+     <%= f.password_field :password, autocomplete: "new-password" %>
+   </div>
+
+   <div class="field">
+     <%= f.label :password_confirmation %><br />
+     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+   </div>
+
+   <div class="actions">
+     <%= f.submit "Sign up", :class => "sign-up-button" %>
+   </div>
+   <%= render "devise/shared/links", link_style: "form-links" %>
+ <% end %>
+</div>
+</header>
+
+<section class="comic-section">
+  <div class="container">
+    <div class="row-single">
+      <h2>Newest Comics For You</h2>
+    </div>
+    <div class="row">
+      <%= render "comics/comic-list", comics:@comics %>
+    </div>
+    <%=link_to "Best selling comics",best_sellers_path,:class=>"comic-title-link" %>
+  </div>
+</section>
+
+<section class="artist-section">
+  <div class="container">
+    <div class="row-single">
+      <h2>Best Rated Artists</h2>
+    </div>
+    <div class="row">
+      <%= render "artists/artist-list", artists:@artists %>
+    </div>
+  </div>
+</section>
+<section class="reviews-section">
+  <div class="container">
+    <div class="row-single">
+      <h2>Latest Reviews</h2>
+    </div>
+    <div class="row">
+      <%= render "reviews/review-list", reviews:@reviews %>
+    </div>
+  </div>
+</section>
+<script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>

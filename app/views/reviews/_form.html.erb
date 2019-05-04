@@ -1,0 +1,28 @@
+<%= form_for review, url:{action:"create"} do |f| %>
+<%= content_tag :div, class: "row-single" do %>
+  <%= content_tag :div, class: "col span-1-of-3" do %>
+    <%= f.label :title %>
+  <% end %>
+  <%= content_tag :div, class: "col span-2-of-3" do %>
+    <%= f.text_field :title %>
+  <% end %>
+<% end %>
+
+<%= content_tag :div, class: "row-single" do %>
+  <%= content_tag :div, class: "col span-1-of-3" do %>
+    <%= f.label :content %>
+  <% end %>
+  <%= content_tag :div, class: "col span-2-of-3" do %>
+    <%= f.text_area :content, size: "50x10" %>
+  <% end %>
+<% end %>
+
+<%= content_tag :div, class: "row-single" do %>
+  <%= content_tag :div, class: "col span-1-of-3" do %>
+  <% end %>
+  <%= content_tag :div, class: "col span-2-of-3", label:false do %>
+    <%= f.submit "Create", class: "sign-up-button" %>
+  <% end %>
+<% end %>
+
+<% end %>

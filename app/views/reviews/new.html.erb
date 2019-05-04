@@ -1,0 +1,5 @@
+<h1>Create a new review for <%=@comic.title%></h1>
+<div class="container new-comic-form">
+  <%= render partial: "shared/error_messages", locals: {object:@review} %>
+  <%= render partial: "form", locals:{review:@review} %>
+</div>

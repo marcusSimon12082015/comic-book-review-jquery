@@ -37,5 +37,16 @@
       <% end %>
     </ul>
     <%=link_to "Reviews for this comic", comic_reviews_path(@comic),{:class =>"form-links"} %>
+    <div class="row">
+      <h1>Users who own this comic</h1>
+    </div>
+    <ul class="character-list clearfix">
+      <% comic.removeCurrentUser(current_user).each do |user| %>
+        <li class="comic-artist-img">
+          <%=image_tag displayUserImage(user) %>
+          <%=user.firstEmailPart%>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </section>

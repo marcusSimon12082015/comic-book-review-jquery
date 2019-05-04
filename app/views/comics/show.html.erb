@@ -25,6 +25,17 @@
       <% end %>
     </ul>
 
-    
+    <div class="row">
+      <h1>Characters</h1>
+    </div>
+    <ul class="character-list clearfix">
+      <% comic.characters.each do |character| %>
+        <li class="comic-artist-img">
+          <%=image_tag displayCharacterImage(character) %>
+          <%=character.name%>
+        </li>
+      <% end %>
+    </ul>
+    <%=link_to "Reviews for this comic", comic_reviews_path(@comic),{:class =>"form-links"} %>
   </div>
 </section>

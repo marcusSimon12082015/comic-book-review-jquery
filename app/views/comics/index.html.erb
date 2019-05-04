@@ -1,0 +1,11 @@
+<div class="container-fluid search-bar">
+  <%= form_tag(comics_path, method: :get) do %>
+    <div class="col span-1-of-3">
+      <%= label_tag "publisher:" %>
+      <%= collection_select(:search,:publisher_id, Publisher.all,:id,:name,
+          include_blank:"Select publisher",
+          selected:selectedPublisher(params[:search])) %>
+    </div>
+    
+  <% end %>
+</div>

@@ -1,0 +1,37 @@
+
+<% if flash.present? %>
+  <div id='flash'>
+   <script>
+     <% if flash[:success] %>
+       var $toastContent = $('<span><%= flash[:success] %></span>');
+       toastr.success($toastContent)
+       <% flash[:success] = nil %>
+     <% end %>
+     <% if flash[:info] %>
+       var $toastContent = $('<span><%= flash[:info] %></span>');
+       toastr.info($toastContent)
+       <% flash[:info] = nil %>
+     <% end %>
+     <% if flash[:notice] %>
+       var $toastContent = $('<span><%= flash[:notice] %></span>');
+       toastr.info($toastContent)
+       <% flash[:notice] = nil %>
+     <% end %>
+     <% if flash[:danger] %>
+       var $toastContent = $('<span><%= flash[:danger] %></span>');
+       toastr.error($toastContent)
+       <% flash[:danger] = nil %>
+     <% end %>
+     <% if flash[:error] %>
+       var $toastContent = $('<span><%= flash[:error] %></span>');
+       toastr.error($toastContent)
+       <% flash[:error] = nil %>
+     <% end %>
+     <% if flash[:alert] %>
+       var $toastContent = $('<span><%= flash[:alert] %></span>');
+       toastr.error($toastContent)
+       <% flash[:alert] = nil %>
+     <% end %>
+   </script>
+  </div>
+<% end %>

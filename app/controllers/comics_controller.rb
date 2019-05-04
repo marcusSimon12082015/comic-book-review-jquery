@@ -34,5 +34,20 @@ class ComicsController < ApplicationController
 
   private
 
-  
+  def set_comic
+    @comic = Comic.find(params[:id])
+  end
+
+  def comics_params
+    params.require(:comic).permit(:search,
+       :title,:description,
+       :"release_date(1i)",:"release_date(2i)",:"release_date(3i)",
+       :pages,
+       :price,
+       :publisher_id,
+       :comic_cover_image,
+       :artist_ids => [],
+       :character_ids => [],
+       :artists_attributes => [:name,:surname,:type_id])    
+  end
 end

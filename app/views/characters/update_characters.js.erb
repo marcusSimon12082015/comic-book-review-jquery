@@ -1,0 +1,4 @@
+$('#character_field_set').removeClass('hidden_checkbox')
+$('#comic_character_id ul').empty()
+ul = $('#comic_character_id ul')
+ul.append("<%= j render(@characters) %>").append("</ul>")

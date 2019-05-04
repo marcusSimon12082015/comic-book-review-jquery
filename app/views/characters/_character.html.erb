@@ -1,0 +1,10 @@
+<li>
+  <%= check_box_tag(
+    :character_ids,
+    character.id,
+    false,
+    :name => 'comic[character_ids][]',
+    :id => "comic_character_ids_#{character.id}")
+    %>
+    <%= label_tag "character", character.name%>
+</li>

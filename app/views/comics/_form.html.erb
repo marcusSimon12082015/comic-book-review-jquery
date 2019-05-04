@@ -1,0 +1,127 @@
+<%= form_for comic, url:{action:"create"} do |f| %>
+<%= content_tag :div, class: "row-single" do %>
+  <%= content_tag :div, class: "col span-1-of-3" do %>
+    <%= f.label :title %>
+  <% end %>
+  <%= content_tag :div, class: "col span-2-of-3" do %>
+    <%= f.text_field :title %>
+  <% end %>
+<% end %>
+
+<%= content_tag :div, class: "row-single" do %>
+  <%= content_tag :div, class: "col span-1-of-3" do %>
+    <%= f.label :description %>
+  <% end %>
+  <%= content_tag :div, class: "col span-2-of-3" do %>
+    <%= f.text_area :description, size: "50x10"%>
+  <% end %>
+<% end %>
+
+<%= content_tag :div, class: "row-single" do %>
+  <%= content_tag :div, class: "col span-1-of-3" do %>
+    <%= f.label :release_date %>
+  <% end %>
+  <%= content_tag :div, class: "col span-2-of-3" do %>
+    <%= f.date_select :release_date %>
+  <% end %>
+<% end %>
+
+<%= content_tag :div, class: "row-single" do %>
+  <%= content_tag :div, class: "col span-1-of-3" do %>
+    <%= f.label :pages %>
+  <% end %>
+  <%= content_tag :div, class: "col span-2-of-3" do %>
+    <%= f.number_field :pages %>
+  <% end %>
+<% end %>
+
+<%= field_set_tag "Choose artists or create new ones:" do %>
+
+    <%= content_tag :div, class: "row-single" do %>
+    <ul>
+      <%= f.collection_check_boxes(:artist_ids, Artist.all,:id,:nameType,
+          {:include_hidden => false},
+          {multiple:true}) do |cbe| %>
+          <li>
+            <%= cbe.check_box %>
+            <%= cbe.label %>
+          </li>
+      <% end %>
+    </ul>
+    <% end %>
+
+    <%= content_tag :div, class:"row-single" do %>
+      <%= f.nested_fields_for :artists do |artist_form| %>
+        <%= content_tag :div, class: "col span-1-of-5" do %>
+          <%= artist_form.label :name %>
+          <%= artist_form.text_field :name %>
+        <% end %>
+        <%= content_tag :div, class: "col span-1-of-5" do %>
+            <%= artist_form.label :surname %>
+            <%= artist_form.text_field :surname %>
+        <% end %>
+        <%= content_tag :div, class: "col span-2-of-5" do %>
+          <%= artist_form.collection_select(:type_id, Type.all,:id,:name,include_blank:"Select artist type") %>
+          <%=artist_form.remove_nested_fields_link do %>
+            <span class="add-to-collection">Remove</span>
+          <% end %>
+        <% end %>
+    <% end %>
+    <%= f.add_nested_fields_link :artists do %>
+      <span class="add-to-collection">New Artist</span>
+    <% end %>
+    <% end %>
+<% end %>
+
+
+
+<%= content_tag :div, class: "row-single" do %>
+  <%= content_tag :div, class: "col span-1-of-3" do %>
+    <%= f.label :price %>
+  <% end %>
+  <%= content_tag :div, class: "col span-2-of-3" do %>
+    <%= f.number_field :price, step: 0.01 %>
+  <% end %>
+<% end %>
+
+
+<%= content_tag :div, class: "row-single" do %>
+  <%= content_tag :div, class: "col span-1-of-3" do %>
+    <%= f.label :publisher %>
+  <% end %>
+  <%= content_tag :div, class: "col span-2-of-3" do %>
+    <%= f.collection_select(:publisher_id, Publisher.all,:id,:name,include_blank:"Select publisher") %>
+  <% end %>
+<% end %>
+
+<%= field_set_tag "Choose characters:", class: "hidden_checkbox", id:"character_field_set" do %>
+
+    <%= content_tag :div, class: "row-single", id:"comic_character_id" do %>
+      <ul>
+        <%= f.collection_check_boxes(:character_ids, @characters.nil? ? Character.all : @characters,:id,:name,
+            {:include_hidden => false},
+            {multiple:true})%>
+    <% end %>
+      </ul>
+<% end %>
+
+
+<%= content_tag :div, class: "row-single" do %>
+  <%= content_tag :div, class: "col span-1-of-3" do %>
+    <%= f.label :comic_cover_image %>
+  <% end %>
+  <%= content_tag :div, class: "col span-2-of-3" do %>
+    <%= f.file_field :comic_cover_image %>
+  <% end %>
+<% end %>
+
+
+<%= content_tag :div, class: "row-single" do %>
+  <%= content_tag :div, class: "col span-1-of-3" do %>
+  <% end %>
+  <%= content_tag :div, class: "col span-2-of-3", label:false do %>
+    <%= f.submit "Create", class: "sign-up-button" %>
+  <% end %>
+<% end %>
+
+<% end %>

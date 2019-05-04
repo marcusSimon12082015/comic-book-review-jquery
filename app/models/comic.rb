@@ -55,7 +55,7 @@ class Comic < ApplicationRecord
   def self.searchByPublisher(search)
     attribute_value = search[:publisher_id] ||= ""
 
-    if attribute_value.empty?
+    if !attribute_value.empty?
       where("publisher_id = ?",attribute_value)
     else
       all

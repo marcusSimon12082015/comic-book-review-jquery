@@ -48,6 +48,6 @@ class ComicsController < ApplicationController
        :comic_cover_image,
        :artist_ids => [],
        :character_ids => [],
-       :artists_attributes => [:name,:surname,:type_id])    
+       :artists_attributes => [:name,:surname,:type_id])
   end
 end

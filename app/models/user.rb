@@ -6,4 +6,13 @@ class User < ApplicationRecord
 
   #user roles
   enum role:[:standard,:admin]
+  #####################################################
+
+  #associations
+  has_many :user_comics, dependent: :destroy
+  has_many :comicsofUser, :through => :user_comics, :source => 'comic'
+
+  has_many :reviews
+  has_many :comic_reviews, :through => :reviews, :source => 'comic'
+  #################################################################################
 end

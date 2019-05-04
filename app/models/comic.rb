@@ -24,8 +24,8 @@ class Comic < ApplicationRecord
   #validations
   validates :title, presence: true
   validates :description, presence: true
-  validates :price, presence: true, numerically: {:greater_than => 0.0}
-  validates :pages, presence: true, numerically: {:greater_than => 0.0}
+  validates :price, presence: true, numericality: {:greater_than => 0.0}
+  validates :pages, presence: true, numericality: {:greater_than => 0.0}
   validates_associated :artists
   ###########################################################################
 
@@ -76,6 +76,6 @@ class Comic < ApplicationRecord
     .joins(:user_comics)
     .group(:comic_id)
     .order("user_count DESC")
-  end 
+  end
   ############################################################################
 end

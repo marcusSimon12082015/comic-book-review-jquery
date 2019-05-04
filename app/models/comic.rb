@@ -43,5 +43,39 @@ class Comic < ApplicationRecord
     end
   end
 
-  
+  def find_artist(current)
+    self.artists.any?{|artist|
+      artist.name == current["name"] &&
+      artist.surname == current["surname"] &&
+      artist.type_id == current["type_id"].to_i
+    }
+  end
+
+  #class methods
+  def self.searchByPublisher(search)
+    attribute_value = search[:publisher_id] ||= ""
+
+    if attribute_value.empty?
+      where("publisher_id = ?",attribute_value)
+    else
+      all
+    end
+  end
+
+  def self.sortOption(search)
+    sort_option = search[:sort_order]
+    if sort_option == 'rating'
+      customOrder('rating',:sort => "DESC")
+    else
+      customOrder('release_date', :sort => sort_option)
+    end
+  end
+
+  def self.best_sellers
+    select("#{self.table_name}.*, COUNT(comic_id) AS user_count")
+    .joins(:user_comics)
+    .group(:comic_id)
+    .order("user_count DESC")
+  end 
+  ############################################################################
 end

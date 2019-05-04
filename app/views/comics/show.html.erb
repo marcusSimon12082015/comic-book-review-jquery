@@ -4,9 +4,9 @@
       <h1><%=@comic.title%></h1>
       <p>Description:<br> <%=@comic.description %></p>
       <p>Price: <%=@comic.price%></p>
-      <p><%=comic.release_date.strftime("%B %d, %Y") %></p>
+      <p><%=@comic.release_date.strftime("%B %d, %Y") %></p>
     </div>
-    <div class="col span-1-0f-3 comic-image">
+    <div class="col span-1-of-3 comic-image">
       <%= image_tag displayCoverImage(@comic) %>
       <%= displayAddButton(current_user,@comic) %>
     </div>
@@ -17,7 +17,7 @@
       <h1>Artists</h1>
     </div>
     <ul class="artist-list clearfix">
-      <% comic.artists.each do |artist| %>
+      <% @comic.artists.each do |artist| %>
         <li class="comic-artist-img">
           <%=image_tag displayArtistImage(artist) %>
           <%=artist.nameType%>
@@ -29,7 +29,7 @@
       <h1>Characters</h1>
     </div>
     <ul class="character-list clearfix">
-      <% comic.characters.each do |character| %>
+      <% @comic.characters.each do |character| %>
         <li class="comic-artist-img">
           <%=image_tag displayCharacterImage(character) %>
           <%=character.name%>
@@ -41,7 +41,7 @@
       <h1>Users who own this comic</h1>
     </div>
     <ul class="character-list clearfix">
-      <% comic.removeCurrentUser(current_user).each do |user| %>
+      <% @comic.removeCurrentUser(current_user).each do |user| %>
         <li class="comic-artist-img">
           <%=image_tag displayUserImage(user) %>
           <%=user.firstEmailPart%>

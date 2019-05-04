@@ -1,4 +1,4 @@
-class CharactersController
+class CharactersController < ApplicationController
   def update_characters
     @characters = Character.where('publisher_id = ?',params[:publisher_id])
     respond_to do |format|

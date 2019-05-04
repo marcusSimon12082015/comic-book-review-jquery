@@ -11,7 +11,7 @@
       <%= select(:search,:sort_order,
           options_for_select([['Newest',"DESC"],['Oldest',"ASC"],['Rating',"rating"]],
           selected:selectedOrder(params[:search]))) %>
-      <%= submit_tag("Search")
+      <%= submit_tag("Search") %>
     </div>
   <% end %>
 </div>

@@ -25,4 +25,10 @@ module ComicHelper
     comic.comic_cover_image.file.nil? ? "/assets/cover_not_available_360.jpg"
                                       : comic.comic_cover_image.url.to_s
   end
+
+  def displayNewComicLink(user)
+    if user.present? && user.admin?
+      content_tag(:li, link_to("New Comic",new_comic_path))
+    end
+  end
 end

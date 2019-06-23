@@ -36,7 +36,13 @@
         </li>
       <% end %>
     </ul>
-    <%=link_to "Reviews for this comic", comic_reviews_path(@comic),{:class =>"form-links"} %>
+    <%=link_to "Reviews for this comic", comic_reviews_path(@comic),{:id=>"js-reviews-index",:class =>"form-links"} %>
+    <div class="comic-description">
+      <ul id="reviews-list">
+
+      </ul>
+    </div>
+
     <div class="row">
       <h1>Users who own this comic</h1>
     </div>

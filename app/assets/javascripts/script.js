@@ -54,6 +54,39 @@ $(".link-show").on('click',function(e){
   });
 });
 
+$('#js-reviews-index').on('click',function(e){
+    e.preventDefault();
+    var href = $(this).attr("href");
+    $.ajax({
+      method:'GET',
+      url: href,
+      dataType: 'json'
+    })
+    .done(function(data){
+      $reviewsList = $("#reviews-list");
+      if ($reviewsList.children().length !== 0) {
+        $reviewsList.hide(1000);
+        $reviewsList.empty();
+      } else {
+        $.each(data,function(index,value){
+          var review = new Review(data[index]["id"],
+                data[index]["title"],
+                data[index]["content"],data[index]["user"]["email"],
+                data[index]["links"]["next"],
+                data[index]["links"]["previous"]);
+          review.renderLink();
+        })
+        $reviewsList.show(1000);
+      }
+    })
+    .fail(function(){
+      console.log('ERROR');
+    })
+    .always(function(){
+      console.log('COMPLETE');
+    });
+});
+
 
   toastr.options = ({
    'closeButton': true,

@@ -17,6 +17,23 @@ $(document).on("turbolinks:load",function(){
     });
   });
 
+$("#new_comment").on('submit',function(e){
+  e.preventDefault();
+  var values = $(this).serialize();
+  var url = $(e.target).attr('action');
+  $.post(url,value,function(data){
+    var comment = new Comment(data["id"],data["content"],data["user"]["email"]);
+    $("#comment_content").val('');
+    $("#comment-list").prepend(comment.renderListItem());
+  })
+  .fail(function(error){
+    alert(error["responseText"]);
+  })
+  .always(function(){
+    $(".add-to-collection").attr("disabled",false);
+  });
+});
+
   toastr.options = ({
    'closeButton': true,
    'debug': false,

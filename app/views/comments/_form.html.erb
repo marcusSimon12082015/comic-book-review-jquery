@@ -1,0 +1,13 @@
+<%=form_for([review,comment]) do |f| %>
+  <%=content_tag :div, class: "row-single comment-form" do %>
+    <%=content_tag :div, class: "col span-3-of-3" do %>
+      <%=f.text_area :content, size: "30x5" %>
+    <% end %>
+<% end %>
+
+<%=content_tag :div, class: "row-single comment-form" do %>
+  <%=content_tag :div, class: "col span-3-of-3", label:false do %>
+    <%=f.submit "Create Comment", class: "add-to-collection" %>
+  <% end %>
+  <% end %>
+<% end %>

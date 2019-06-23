@@ -7,7 +7,15 @@
   {:class=>"link-show next-link #{@next.empty? ? 'hide-link': ''}"} %>
 </div>
 
-<h1 class="row-single"><%=@review.title %></h1>
+<h1 class="row-single">
+  <p class="title-user-review"><%=@review.title %> by <%=@review.user.firstEmailPart %></p>
+</h1>
+
 <div class="container" style="margin-top:20px;">
   <p><%=@review.content%></p>
+  <% if current_user %>
+     <h2 class="row-single">Create a new comment</h2>
+     <%=render partial: "comments/form", locals: {review: @review,comment:Comment.new} %>
+  <% end %>
 </div>
+<br>

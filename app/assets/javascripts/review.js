@@ -8,4 +8,13 @@ class Review{
     this.next = next;
     this.previous = previous;
   }
+
+  renderLink()
+  {
+    $("#reviews-list")
+    .append('<li><a href="'+
+    window.location.pathname+'/reviews/'+this.id+
+    '" class="comic-title-link">'+this.title+' by '+
+  this.userName()+'</a></li>');
+  }
 }

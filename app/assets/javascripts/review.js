@@ -17,4 +17,9 @@ class Review{
     '" class="comic-title-link">'+this.title+' by '+
   this.userName()+'</a></li>');
   }
+
+  userName()
+  {
+    return this.userEmail.substring(0,this.userEmail.indexOf("@"));
+  }
 }

@@ -18,6 +18,19 @@ class ReviewsController < ApplicationController
   end
 
   def show
+    if params.key?(:comic_id)
+      @comic_id = params[:comic_id].to_i
+    end
+
+    @comic_id = @comic_id.nil? ? 0 : @comic_id
+
+    @next = @review.next_link(@comic_id)
+    @previous = @review.previous_link(@comic_id)
+
+    respond_to do |format|
+      format.html
+      format.json { render json:@review, comic_id: @comic_id}
+    end
   end
 
   def new

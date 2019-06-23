@@ -1,3 +1,12 @@
+<div class="container next-previous-div">
+  <%=link_to '&laquo;'.html_safe+"Previous",
+  @previous,
+  {:class=>"link-show previous-link #{@previous.empty? ? 'hide-link': ''}"} %>
+  <%=link_to 'Next&raquo;'.html_safe,
+  @next,
+  {:class=>"link-show next-link #{@next.empty? ? 'hide-link': ''}"} %>
+</div>
+
 <h1 class="row-single"><%=@review.title %></h1>
 <div class="container" style="margin-top:20px;">
   <p><%=@review.content%></p>

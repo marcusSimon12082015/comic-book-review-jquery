@@ -24,7 +24,7 @@ $("#new_comment").on('submit',function(e){
   $.post(url,values,function(data){
     var comment = new Comment(data["id"],data["content"],data["user"]["email"]);
     $("#comment_content").val('');
-    $("#comment-list").prepend(comment.renderListItem());
+    $("#comments-list").prepend(comment.renderListItem());
   })
   .fail(function(error){
     alert(error["responseText"]);

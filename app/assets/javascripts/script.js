@@ -34,6 +34,27 @@ $("#new_comment").on('submit',function(e){
   });
 });
 
+$(".link-show").on('click',function(e){
+  e.preventDefault();
+  var href = $(this).attr("href");
+  $.ajax({
+    method:'GET',
+    url:href,
+    dataType:'json'
+  })
+  .done(function(data){
+    var review = new Review(data["id"],data["title"],
+                            data["content"],
+                            data["user"]["email"],
+                            data["links"]["next"],
+                            data["links"]["previous"]);
+    review.renderShow();
+    $('#comments-list').empty();
+    review.setComments(data["comments"]);
+  });
+});
+
+
   toastr.options = ({
    'closeButton': true,
    'debug': false,

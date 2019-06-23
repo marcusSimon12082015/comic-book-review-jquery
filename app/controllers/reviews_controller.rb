@@ -3,9 +3,17 @@ class ReviewsController < ApplicationController
 
   def index
     if params.key?(:comic_id)
+      @comic_id = params[:comic_id].to_i
       @reviews = Review.searchByComic(params[:comic_id])
     else
       @reviews = Review.customOrder('created_at')
+    end
+
+    @comic_id = @comic_id.nil? ? 0 : @comic_id
+
+    respond_to do |format|
+      format.html
+      format.json { render json:@reviews, comic_id: @comic_id}
     end
   end
 

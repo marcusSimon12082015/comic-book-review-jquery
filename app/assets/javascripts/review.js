@@ -31,5 +31,14 @@ class Review{
     this.setLinks();
   }
 
+  setComments(array)
+  {
+    $("#comments-list").empty();
+    $.each(array,function(index,value){
+      var comment = new Comment(value["id"],value["content"],value["user"]["email"]);
+      $("#comments-list").prepend(comment.renderListItem());
+    })
+  }
+
   
 }

@@ -22,4 +22,14 @@ class Review{
   {
     return this.userEmail.substring(0,this.userEmail.indexOf("@"));
   }
+
+  renderShow()
+  {
+    $(".row-single .title-user-review").text(this.title+" by "+this.userName());
+    $(".container p").text(this.content);
+    $("#new_comment").attr("action",this.id+"/comments");
+    this.setLinks();
+  }
+
+  
 }

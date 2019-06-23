@@ -40,5 +40,20 @@ class Review{
     })
   }
 
-  
+  setLinks()
+  {
+    if (this.next === "") {
+      $(".link-show.next-link").hide();
+    } else {
+      $(".link-show.next-link").attr("href",this.next);
+      $(".link-show.next-link").show();
+    }
+
+    if (this.previous === "") {
+      $(".link-show.previous-link").hide();
+    } else {
+      $(".link-show.previous-link").attr("href",this.previous);
+      $(".link-show.previous-link").show();
+    }
+  }
 }

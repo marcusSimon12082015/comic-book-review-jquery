@@ -10,7 +10,16 @@ class ReviewSerializer < ActiveModel::Serializer
 
   attribute :links do
     {
-      
+      next: generate_next_link,
+      previous: generate_previous_link
     }
+  end
+
+  def generate_next_link
+    object.next_link(instance_options[:comic_id])
+  end
+
+  def generate_previous_link
+    object.previous_link(instance_options[:comic_id])
   end
 end

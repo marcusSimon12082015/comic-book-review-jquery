@@ -388,6 +388,17 @@ fieldset ul
   margin-bottom: 10px;
 }
 
+.next-previous-div
+{
+  height: 50px;
+}
+
+.container a
+{
+  color: #000;
+  text-decoration: none;
+  display: inline-block;
+}
 /**********************************************/
 
 
@@ -398,3 +409,38 @@ ion-icon[name="person"]
   color:#fff;
 }
 /*************************/
+
+/*reviews index style links*/
+ul #reviews-list
+{
+  list-style-type: square;
+}
+
+.previous_link
+{
+  float:left;
+}
+
+.next-link
+{
+  float: right;
+}
+
+a.hide-link
+{
+  display: none; !important
+}
+
+.comment-panel
+{
+  list-style-type: none;
+  margin:20px;
+  border: 2px solid #b00;
+  border-radius: 25px;
+  padding:10px;
+}
+
+.comment-panel p:first-child
+{
+  font-weight: bold;
+}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_04_144741) do
+ActiveRecord::Schema.define(version: 2019_06_23_155043) do
 
   create_table "artist_comics", force: :cascade do |t|
     t.integer "comic_id"
@@ -61,6 +61,14 @@ ActiveRecord::Schema.define(version: 2019_05_04_144741) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["publisher_id"], name: "index_comics_on_publisher_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "review_id"
+    t.string "content"
+    t.index ["review_id"], name: "index_comments_on_review_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "publishers", force: :cascade do |t|

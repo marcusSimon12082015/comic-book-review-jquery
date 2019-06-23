@@ -33,5 +33,23 @@ class Review < ApplicationRecord
         return review_path(@review)
       end
     end
-  end 
+  end
+
+  def previous_link(comic_id=0)
+    if comic_id > 0
+      @review = Review.where('comic_id = ? and created_at > ?',comic_id,created_at).first
+      if @review.nil?
+        return ""
+      else
+        return comic_review_path(comic_id,@review.id)
+      end
+    else
+      @review = Review.where('created_at > ?',created_at).first
+      if @review.nil?
+        return ""
+      else
+        return review_path(@review)
+      end
+    end
+  end
 end

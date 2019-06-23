@@ -21,7 +21,7 @@ $("#new_comment").on('submit',function(e){
   e.preventDefault();
   var values = $(this).serialize();
   var url = $(e.target).attr('action');
-  $.post(url,value,function(data){
+  $.post(url,values,function(data){
     var comment = new Comment(data["id"],data["content"],data["user"]["email"]);
     $("#comment_content").val('');
     $("#comment-list").prepend(comment.renderListItem());
